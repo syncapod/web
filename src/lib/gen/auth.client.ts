@@ -6,14 +6,10 @@ import type { ServiceInfo } from "@protobuf-ts/runtime-rpc";
 import { Auth } from "./auth";
 import type { LogoutRes } from "./auth";
 import type { LogoutReq } from "./auth";
-import type { AuthorizeRes } from "./auth";
-import type { AuthorizeReq } from "./auth";
 import type { AuthenticateRes } from "./auth";
 import type { AuthenticateReq } from "./auth";
 import type { ResetPasswordRes } from "./auth";
 import type { ResetPasswordReq } from "./auth";
-import type { ActivateRes } from "./auth";
-import type { ActivateReq } from "./auth";
 import { stackIntercept } from "@protobuf-ts/runtime-rpc";
 import type { CreateAccountRes } from "./auth";
 import type { CreateAccountReq } from "./auth";
@@ -28,10 +24,6 @@ export interface IAuthClient {
      */
     createAccount(input: CreateAccountReq, options?: RpcOptions): UnaryCall<CreateAccountReq, CreateAccountRes>;
     /**
-     * @generated from protobuf rpc: Activate(protos.ActivateReq) returns (protos.ActivateRes);
-     */
-    activate(input: ActivateReq, options?: RpcOptions): UnaryCall<ActivateReq, ActivateRes>;
-    /**
      * @generated from protobuf rpc: ResetPassword(protos.ResetPasswordReq) returns (protos.ResetPasswordRes);
      */
     resetPassword(input: ResetPasswordReq, options?: RpcOptions): UnaryCall<ResetPasswordReq, ResetPasswordRes>;
@@ -39,11 +31,17 @@ export interface IAuthClient {
      * @generated from protobuf rpc: Authenticate(protos.AuthenticateReq) returns (protos.AuthenticateRes);
      */
     authenticate(input: AuthenticateReq, options?: RpcOptions): UnaryCall<AuthenticateReq, AuthenticateRes>;
+    // 	option (google.api.http) = { 
+
+    // 		post: "/v1/auth/authorize" 
+
+    // 		body: "*" 
+
+    // 	}; 
+
     /**
-     * @generated from protobuf rpc: Authorize(protos.AuthorizeReq) returns (protos.AuthorizeRes);
-     */
-    authorize(input: AuthorizeReq, options?: RpcOptions): UnaryCall<AuthorizeReq, AuthorizeRes>;
-    /**
+     * }
+     *
      * @generated from protobuf rpc: Logout(protos.LogoutReq) returns (protos.LogoutRes);
      */
     logout(input: LogoutReq, options?: RpcOptions): UnaryCall<LogoutReq, LogoutRes>;
@@ -65,38 +63,34 @@ export class AuthClient implements IAuthClient, ServiceInfo {
         return stackIntercept<CreateAccountReq, CreateAccountRes>("unary", this._transport, method, opt, input);
     }
     /**
-     * @generated from protobuf rpc: Activate(protos.ActivateReq) returns (protos.ActivateRes);
-     */
-    activate(input: ActivateReq, options?: RpcOptions): UnaryCall<ActivateReq, ActivateRes> {
-        const method = this.methods[1], opt = this._transport.mergeOptions(options);
-        return stackIntercept<ActivateReq, ActivateRes>("unary", this._transport, method, opt, input);
-    }
-    /**
      * @generated from protobuf rpc: ResetPassword(protos.ResetPasswordReq) returns (protos.ResetPasswordRes);
      */
     resetPassword(input: ResetPasswordReq, options?: RpcOptions): UnaryCall<ResetPasswordReq, ResetPasswordRes> {
-        const method = this.methods[2], opt = this._transport.mergeOptions(options);
+        const method = this.methods[1], opt = this._transport.mergeOptions(options);
         return stackIntercept<ResetPasswordReq, ResetPasswordRes>("unary", this._transport, method, opt, input);
     }
     /**
      * @generated from protobuf rpc: Authenticate(protos.AuthenticateReq) returns (protos.AuthenticateRes);
      */
     authenticate(input: AuthenticateReq, options?: RpcOptions): UnaryCall<AuthenticateReq, AuthenticateRes> {
-        const method = this.methods[3], opt = this._transport.mergeOptions(options);
+        const method = this.methods[2], opt = this._transport.mergeOptions(options);
         return stackIntercept<AuthenticateReq, AuthenticateRes>("unary", this._transport, method, opt, input);
     }
+    // 	option (google.api.http) = { 
+
+    // 		post: "/v1/auth/authorize" 
+
+    // 		body: "*" 
+
+    // 	}; 
+
     /**
-     * @generated from protobuf rpc: Authorize(protos.AuthorizeReq) returns (protos.AuthorizeRes);
-     */
-    authorize(input: AuthorizeReq, options?: RpcOptions): UnaryCall<AuthorizeReq, AuthorizeRes> {
-        const method = this.methods[4], opt = this._transport.mergeOptions(options);
-        return stackIntercept<AuthorizeReq, AuthorizeRes>("unary", this._transport, method, opt, input);
-    }
-    /**
+     * }
+     *
      * @generated from protobuf rpc: Logout(protos.LogoutReq) returns (protos.LogoutRes);
      */
     logout(input: LogoutReq, options?: RpcOptions): UnaryCall<LogoutReq, LogoutRes> {
-        const method = this.methods[5], opt = this._transport.mergeOptions(options);
+        const method = this.methods[3], opt = this._transport.mergeOptions(options);
         return stackIntercept<LogoutReq, LogoutRes>("unary", this._transport, method, opt, input);
     }
 }

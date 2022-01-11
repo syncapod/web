@@ -1179,10 +1179,10 @@ export const Episodes = new Episodes$Type();
  * @generated ServiceType for protobuf service protos.Pod
  */
 export const Pod = new ServiceType("protos.Pod", [
-    { name: "GetPodcast", options: {}, I: GetPodReq, O: Podcast },
-    { name: "GetEpisodes", options: {}, I: GetEpiReq, O: Episodes },
-    { name: "GetUserEpisode", options: {}, I: GetUserEpiReq, O: UserEpisode },
-    { name: "UpsertUserEpisode", options: {}, I: UserEpisode, O: Response },
-    { name: "GetSubscriptions", options: {}, I: GetSubReq, O: Subscriptions },
-    { name: "GetUserLastPlayed", options: {}, I: GetUserLastPlayedReq, O: LastPlayedRes }
+    { name: "GetPodcast", options: { "google.api.http": { post: "/v1/podcast/get_podcast", body: "*" } }, I: GetPodReq, O: Podcast },
+    { name: "GetEpisodes", options: { "google.api.http": { post: "/v1/podcast/get_episodes", body: "*" } }, I: GetEpiReq, O: Episodes },
+    { name: "GetUserEpisode", options: { "google.api.http": { post: "/v1/podcast/get_user_episode", body: "*" } }, I: GetUserEpiReq, O: UserEpisode },
+    { name: "UpsertUserEpisode", options: { "google.api.http": { post: "/v1/podcast/get_user_episode", body: "*" } }, I: UserEpisode, O: Response },
+    { name: "GetSubscriptions", options: { "google.api.http": { post: "/v1/podcast/get_subscriptions", body: "*" } }, I: GetSubReq, O: Subscriptions },
+    { name: "GetUserLastPlayed", options: { "google.api.http": { post: "/v1/podcast/get_user_last_played", body: "*" } }, I: GetUserLastPlayedReq, O: LastPlayedRes }
 ]);

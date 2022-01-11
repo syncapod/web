@@ -111,11 +111,15 @@ export interface CreateAccountReq {
     acceptTerms: boolean;
 }
 /**
- * CreateAccountRes emtpy response on success, error message on failure
+ * CreateAccountRes sends back an error message (if any)
  *
  * @generated from protobuf message protos.CreateAccountRes
  */
 export interface CreateAccountRes {
+    /**
+     * @generated from protobuf field: string error = 1;
+     */
+    error: string;
 }
 /**
  * @generated from protobuf message protos.ResetPasswordReq
@@ -130,24 +134,10 @@ export interface ResetPasswordReq {
  * @generated from protobuf message protos.ResetPasswordRes
  */
 export interface ResetPasswordRes {
-}
-/**
- * ActivateReq takes an activation token to verify against database, if valid then the account is then activated
- *
- * @generated from protobuf message protos.ActivateReq
- */
-export interface ActivateReq {
     /**
-     * @generated from protobuf field: string token = 1;
+     * @generated from protobuf field: string error = 1;
      */
-    token: string;
-}
-/**
- * ActivateRes returns empty result if success, error otherwise
- *
- * @generated from protobuf message protos.ActivateRes
- */
-export interface ActivateRes {
+    error: string;
 }
 // @generated message type with reflection information, may provide speed optimized methods
 class AuthenticateReq$Type extends MessageType<AuthenticateReq> {
@@ -537,19 +527,40 @@ export const CreateAccountReq = new CreateAccountReq$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class CreateAccountRes$Type extends MessageType<CreateAccountRes> {
     constructor() {
-        super("protos.CreateAccountRes", []);
+        super("protos.CreateAccountRes", [
+            { no: 1, name: "error", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
     }
     create(value?: PartialMessage<CreateAccountRes>): CreateAccountRes {
-        const message = {};
+        const message = { error: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<CreateAccountRes>(this, message, value);
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: CreateAccountRes): CreateAccountRes {
-        return target ?? this.create();
+        let message = target ?? this.create(), end = reader.pos + length;
+        while (reader.pos < end) {
+            let [fieldNo, wireType] = reader.tag();
+            switch (fieldNo) {
+                case /* string error */ 1:
+                    message.error = reader.string();
+                    break;
+                default:
+                    let u = options.readUnknownField;
+                    if (u === "throw")
+                        throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
+                    let d = reader.skip(wireType);
+                    if (u !== false)
+                        (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
+            }
+        }
+        return message;
     }
     internalBinaryWrite(message: CreateAccountRes, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string error = 1; */
+        if (message.error !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.error);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -610,50 +621,24 @@ export const ResetPasswordReq = new ResetPasswordReq$Type();
 // @generated message type with reflection information, may provide speed optimized methods
 class ResetPasswordRes$Type extends MessageType<ResetPasswordRes> {
     constructor() {
-        super("protos.ResetPasswordRes", []);
+        super("protos.ResetPasswordRes", [
+            { no: 1, name: "error", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+        ]);
     }
     create(value?: PartialMessage<ResetPasswordRes>): ResetPasswordRes {
-        const message = {};
+        const message = { error: "" };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<ResetPasswordRes>(this, message, value);
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ResetPasswordRes): ResetPasswordRes {
-        return target ?? this.create();
-    }
-    internalBinaryWrite(message: ResetPasswordRes, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        let u = options.writeUnknownFields;
-        if (u !== false)
-            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-        return writer;
-    }
-}
-/**
- * @generated MessageType for protobuf message protos.ResetPasswordRes
- */
-export const ResetPasswordRes = new ResetPasswordRes$Type();
-// @generated message type with reflection information, may provide speed optimized methods
-class ActivateReq$Type extends MessageType<ActivateReq> {
-    constructor() {
-        super("protos.ActivateReq", [
-            { no: 1, name: "token", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
-        ]);
-    }
-    create(value?: PartialMessage<ActivateReq>): ActivateReq {
-        const message = { token: "" };
-        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
-        if (value !== undefined)
-            reflectionMergePartial<ActivateReq>(this, message, value);
-        return message;
-    }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ActivateReq): ActivateReq {
         let message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
             let [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
-                case /* string token */ 1:
-                    message.token = reader.string();
+                case /* string error */ 1:
+                    message.error = reader.string();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -666,10 +651,10 @@ class ActivateReq$Type extends MessageType<ActivateReq> {
         }
         return message;
     }
-    internalBinaryWrite(message: ActivateReq, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        /* string token = 1; */
-        if (message.token !== "")
-            writer.tag(1, WireType.LengthDelimited).string(message.token);
+    internalBinaryWrite(message: ResetPasswordRes, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
+        /* string error = 1; */
+        if (message.error !== "")
+            writer.tag(1, WireType.LengthDelimited).string(message.error);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -677,43 +662,15 @@ class ActivateReq$Type extends MessageType<ActivateReq> {
     }
 }
 /**
- * @generated MessageType for protobuf message protos.ActivateReq
+ * @generated MessageType for protobuf message protos.ResetPasswordRes
  */
-export const ActivateReq = new ActivateReq$Type();
-// @generated message type with reflection information, may provide speed optimized methods
-class ActivateRes$Type extends MessageType<ActivateRes> {
-    constructor() {
-        super("protos.ActivateRes", []);
-    }
-    create(value?: PartialMessage<ActivateRes>): ActivateRes {
-        const message = {};
-        globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
-        if (value !== undefined)
-            reflectionMergePartial<ActivateRes>(this, message, value);
-        return message;
-    }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ActivateRes): ActivateRes {
-        return target ?? this.create();
-    }
-    internalBinaryWrite(message: ActivateRes, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        let u = options.writeUnknownFields;
-        if (u !== false)
-            (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
-        return writer;
-    }
-}
-/**
- * @generated MessageType for protobuf message protos.ActivateRes
- */
-export const ActivateRes = new ActivateRes$Type();
+export const ResetPasswordRes = new ResetPasswordRes$Type();
 /**
  * @generated ServiceType for protobuf service protos.Auth
  */
 export const Auth = new ServiceType("protos.Auth", [
     { name: "CreateAccount", options: {}, I: CreateAccountReq, O: CreateAccountRes },
-    { name: "Activate", options: {}, I: ActivateReq, O: ActivateRes },
     { name: "ResetPassword", options: {}, I: ResetPasswordReq, O: ResetPasswordRes },
     { name: "Authenticate", options: {}, I: AuthenticateReq, O: AuthenticateRes },
-    { name: "Authorize", options: {}, I: AuthorizeReq, O: AuthorizeRes },
     { name: "Logout", options: {}, I: LogoutReq, O: LogoutRes }
 ]);

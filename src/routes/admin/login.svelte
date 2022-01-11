@@ -2,7 +2,6 @@
 	import { AuthClient } from '$lib/gen/auth.client';
 
 	import { TwirpFetchTransport } from '@protobuf-ts/twirp-transport';
-	import { prevent_default } from 'svelte/internal';
 
 	const transport = new TwirpFetchTransport({
 		baseUrl: 'http://localhost:8080/rpc'
@@ -13,14 +12,13 @@
 	let password = '';
 
 	const login = async (e: Event) => {
-		let { response } = await client.authenticate({
+		const response = await client.authenticate({
 			username: username,
 			password: password,
 			stayLoggedIn: true,
 			userAgent: navigator.userAgent
 		});
-		console.log('response', response);
-		prevent_default(e);
+		console.log(response.response.sessionKey);
 	};
 </script>
 

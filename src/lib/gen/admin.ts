@@ -191,6 +191,6 @@ export const RefPodRes = new RefPodRes$Type();
  * @generated ServiceType for protobuf service protos.Admin
  */
 export const Admin = new ServiceType("protos.Admin", [
-    { name: "AddPodcast", options: {}, I: AddPodReq, O: AddPodRes },
-    { name: "RefreshPodcast", options: {}, I: RefPodReq, O: RefPodRes }
+    { name: "AddPodcast", options: { "google.api.http": { post: "/v1/admin/add_podcast", body: "*" } }, I: AddPodReq, O: AddPodRes },
+    { name: "RefreshPodcast", options: { "google.api.http": { post: "/v1/admin/refresh_podcast", body: "*" } }, I: RefPodReq, O: RefPodRes }
 ]);
