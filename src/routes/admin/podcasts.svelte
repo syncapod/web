@@ -58,6 +58,8 @@
 	};
 </script>
 
+<svelte:head><title>Syncapod Admin - Podcasts</title></svelte:head>
+
 {#if errorMsg}
 	<p class="font-semibold text-red-400">{errorMsg}</p>
 {/if}

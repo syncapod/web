@@ -33,29 +33,41 @@
 	$: if (username || password) failed = false;
 </script>
 
-<form on:submit|preventDefault={login} class="p-4 flex flex-col">
-	{#if failed}
-		<p class="text-red-800">Failed to login!</p>
-	{/if}
-	<label for="username">Username:</label>
-	<input
-		class="border border-zinc-400 p-0.5"
-		name="username"
-		id="username"
-		placeholder="Username"
-		bind:value={username}
-		required
-		type="text"
-	/>
-	<label class="mt-2" for="password">Password:</label>
-	<input
-		class="border border-zinc-400 p-0.5"
-		name="password"
-		id="password"
-		placeholder="Password"
-		bind:value={password}
-		required
-		type="password"
-	/>
-	<input type="submit" class="mt-2 bg-zinc-800 text-white p-2" value="Login" />
-</form>
+<div class="w-full md:w-1/2 xl:w-1/3 2xl:w-1/4 mx-auto my-8">
+	<h1 class="text-center text-4xl font-thin mb-4">Syncapod Admin Login</h1>
+
+	<form on:submit|preventDefault={login} class="p-4 flex flex-col space-y-4">
+		{#if failed}
+			<p class="text-red-800">Failed to login!</p>
+		{/if}
+		<div class="flex flex-col">
+			<label for="username">Username:</label>
+			<input
+				class="border border-zinc-400 p-0.5"
+				name="username"
+				id="username"
+				placeholder="Username"
+				bind:value={username}
+				required
+				type="text"
+			/>
+		</div>
+
+		<div class="flex flex-col">
+			<label class="" for="password">Password:</label>
+			<input
+				class="border border-zinc-400 p-0.5"
+				name="password"
+				id="password"
+				placeholder="Password"
+				bind:value={password}
+				required
+				type="password"
+			/>
+		</div>
+
+		<div class="min-w-full">
+			<input class="block bg-zinc-800 text-white p-2 w-full mx-auto" type="submit" value="Login" />
+		</div>
+	</form>
+</div>
