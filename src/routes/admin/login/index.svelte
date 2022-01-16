@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { AuthClient } from '$lib/gen/auth.client';
+	import { sessionKeyStore } from '$lib/store';
+	import { goto } from '$app/navigation';
 
 	import { TwirpFetchTransport } from '@protobuf-ts/twirp-transport';
 
@@ -10,6 +12,7 @@
 
 	let username = '';
 	let password = '';
+	let failed = false;
 
 	const login = async (e: Event) => {
 		const response = await client.authenticate({
@@ -18,11 +21,22 @@
 			stayLoggedIn: true,
 			userAgent: navigator.userAgent
 		});
-		console.log(response.response.sessionKey);
+		if (response.response.sessionKey == '') {
+			failed = true;
+			return;
+		}
+		$sessionKeyStore = response.response.sessionKey;
+		goto('/admin');
 	};
+
+	// reset failed status
+	$: if (username || password) failed = false;
 </script>
 
 <form on:submit|preventDefault={login} class="p-4 flex flex-col">
+	{#if failed}
+		<p class="text-red-800">Failed to login!</p>
+	{/if}
 	<label for="username">Username:</label>
 	<input
 		class="border border-zinc-400 p-0.5"
