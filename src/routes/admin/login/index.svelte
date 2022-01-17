@@ -1,21 +1,14 @@
 <script lang="ts">
-	import { AuthClient } from '$lib/gen/auth.client';
+	import { authClient } from '$lib/twirp';
 	import { sessionKeyStore } from '$lib/store';
 	import { goto } from '$app/navigation';
-
-	import { TwirpFetchTransport } from '@protobuf-ts/twirp-transport';
-
-	const transport = new TwirpFetchTransport({
-		baseUrl: 'http://localhost:8080/rpc'
-	});
-	const client = new AuthClient(transport);
 
 	let username = '';
 	let password = '';
 	let failed = false;
 
 	const login = async (e: Event) => {
-		const response = await client.authenticate({
+		const response = await authClient.authenticate({
 			username: username,
 			password: password,
 			stayLoggedIn: true,
@@ -32,6 +25,8 @@
 	// reset failed status
 	$: if (username || password) failed = false;
 </script>
+
+<svelte:head><title>Sycapod Admin Login</title></svelte:head>
 
 <div class="w-full md:w-1/2 xl:w-1/3 2xl:w-1/4 mx-auto my-8">
 	<h1 class="text-center text-4xl font-thin mb-4">Syncapod Admin Login</h1>

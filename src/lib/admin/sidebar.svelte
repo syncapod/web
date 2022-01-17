@@ -1,9 +1,16 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import { page } from '$app/stores';
+	import { sessionKeyStore } from '$lib/store';
+	import { goto } from '$app/navigation';
 
 	const isBold = (pathname: string, endpoint: string): string => {
 		return pathname.includes(endpoint) ? 'font-semibold' : '';
+	};
+
+	const logout = () => {
+		$sessionKeyStore = '';
+		goto('/admin');
 	};
 
 	const dispatch = createEventDispatcher();
@@ -34,7 +41,10 @@
 
 	<!-- spacer -->
 	<div class="spacer flex-grow" />
-	<div class="spacer p-6 text-lg text-gray-400 font-light cursor-pointer hover:text-black">
+	<div
+		on:click={logout}
+		class="spacer p-6 text-lg text-gray-400 font-light cursor-pointer hover:text-black"
+	>
 		Logout
 	</div>
 	<!-- end spacer -->

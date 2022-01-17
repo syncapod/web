@@ -1,13 +1,12 @@
 <script lang="ts">
 	// TODO: make some client for best way to use twirp
 	import type { AddPodReq, AddPodRes, SearchPodReq, SearchPodRes } from '$lib/gen/admin';
-
-	import { AdminClient } from '$lib/gen/admin.client';
-	import { sessionKeyStore } from '$lib/store';
-	import { TwirpFetchTransport } from '@protobuf-ts/twirp-transport';
-	import Button from '$lib/admin/button.svelte';
 	import type { FinishedUnaryCall, RpcError } from '@protobuf-ts/runtime-rpc';
 	import type { Podcast } from '$lib/gen/podcast';
+
+	import { adminClient } from '$lib/twirp';
+	import { sessionKeyStore } from '$lib/store';
+	import Button from '$lib/admin/button.svelte';
 
 	// AddPodcast
 	let errorMsg = '';
@@ -20,9 +19,6 @@
 	let debounceTimer: NodeJS.Timer;
 
 	const addPodcast = async () => {
-		const transport = new TwirpFetchTransport({ baseUrl: 'http://localhost:8080/rpc' });
-		const adminClient = new AdminClient(transport);
-
 		let r: FinishedUnaryCall<AddPodReq, AddPodRes>;
 		try {
 			r = await adminClient.addPodcast({ url: rssURL }, { meta: { Auth_Token: $sessionKeyStore } });
@@ -40,9 +36,6 @@
 	const searchPodcast = () => {
 		clearTimeout(debounceTimer);
 		debounceTimer = setTimeout(async () => {
-			const transport = new TwirpFetchTransport({ baseUrl: 'http://localhost:8080/rpc' });
-			const adminClient = new AdminClient(transport);
-
 			let r: FinishedUnaryCall<SearchPodReq, SearchPodRes>;
 			try {
 				r = await adminClient.searchPodcasts(

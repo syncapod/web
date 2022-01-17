@@ -1,8 +1,7 @@
 <script context="module" lang="ts">
 	import { browser } from '$app/env';
-	import { AuthClient } from '$lib/gen/auth.client';
-	import { TwirpFetchTransport } from '@protobuf-ts/twirp-transport';
 	import { SESSIONKEY_KEY } from '$lib/const';
+	import { authClient } from '$lib/twirp';
 
 	export async function load({ session }) {
 		let sessionKey = '';
@@ -13,11 +12,7 @@
 		}
 
 		if (sessionKey) {
-			const transport = new TwirpFetchTransport({
-				baseUrl: 'http://localhost:8080/rpc'
-			});
-			const client = new AuthClient(transport);
-			const response = await client.authorize({ sessionKey });
+			const response = await authClient.authorize({ sessionKey });
 			if (response.response) {
 				return {
 					props: {
