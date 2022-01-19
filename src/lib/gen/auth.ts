@@ -33,6 +33,10 @@ export interface AuthenticateReq {
      * @generated from protobuf field: string userAgent = 4;
      */
     userAgent: string;
+    /**
+     * @generated from protobuf field: bool admin = 5;
+     */
+    admin: boolean;
 }
 /**
  * @generated from protobuf message protos.AuthenticateRes
@@ -55,6 +59,10 @@ export interface AuthorizeReq {
      * @generated from protobuf field: string sessionKey = 1;
      */
     sessionKey: string;
+    /**
+     * @generated from protobuf field: bool admin = 2;
+     */
+    admin: boolean;
 }
 /**
  * @generated from protobuf message protos.AuthorizeRes
@@ -160,11 +168,12 @@ class AuthenticateReq$Type extends MessageType<AuthenticateReq> {
             { no: 1, name: "username", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 2, name: "password", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
             { no: 3, name: "stayLoggedIn", kind: "scalar", T: 8 /*ScalarType.BOOL*/ },
-            { no: 4, name: "userAgent", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 4, name: "userAgent", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 5, name: "admin", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
         ]);
     }
     create(value?: PartialMessage<AuthenticateReq>): AuthenticateReq {
-        const message = { username: "", password: "", stayLoggedIn: false, userAgent: "" };
+        const message = { username: "", password: "", stayLoggedIn: false, userAgent: "", admin: false };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<AuthenticateReq>(this, message, value);
@@ -186,6 +195,9 @@ class AuthenticateReq$Type extends MessageType<AuthenticateReq> {
                     break;
                 case /* string userAgent */ 4:
                     message.userAgent = reader.string();
+                    break;
+                case /* bool admin */ 5:
+                    message.admin = reader.bool();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -211,6 +223,9 @@ class AuthenticateReq$Type extends MessageType<AuthenticateReq> {
         /* string userAgent = 4; */
         if (message.userAgent !== "")
             writer.tag(4, WireType.LengthDelimited).string(message.userAgent);
+        /* bool admin = 5; */
+        if (message.admin !== false)
+            writer.tag(5, WireType.Varint).bool(message.admin);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
@@ -279,11 +294,12 @@ export const AuthenticateRes = new AuthenticateRes$Type();
 class AuthorizeReq$Type extends MessageType<AuthorizeReq> {
     constructor() {
         super("protos.AuthorizeReq", [
-            { no: 1, name: "sessionKey", kind: "scalar", T: 9 /*ScalarType.STRING*/ }
+            { no: 1, name: "sessionKey", kind: "scalar", T: 9 /*ScalarType.STRING*/ },
+            { no: 2, name: "admin", kind: "scalar", T: 8 /*ScalarType.BOOL*/ }
         ]);
     }
     create(value?: PartialMessage<AuthorizeReq>): AuthorizeReq {
-        const message = { sessionKey: "" };
+        const message = { sessionKey: "", admin: false };
         globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
         if (value !== undefined)
             reflectionMergePartial<AuthorizeReq>(this, message, value);
@@ -296,6 +312,9 @@ class AuthorizeReq$Type extends MessageType<AuthorizeReq> {
             switch (fieldNo) {
                 case /* string sessionKey */ 1:
                     message.sessionKey = reader.string();
+                    break;
+                case /* bool admin */ 2:
+                    message.admin = reader.bool();
                     break;
                 default:
                     let u = options.readUnknownField;
@@ -312,6 +331,9 @@ class AuthorizeReq$Type extends MessageType<AuthorizeReq> {
         /* string sessionKey = 1; */
         if (message.sessionKey !== "")
             writer.tag(1, WireType.LengthDelimited).string(message.sessionKey);
+        /* bool admin = 2; */
+        if (message.admin !== false)
+            writer.tag(2, WireType.Varint).bool(message.admin);
         let u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);

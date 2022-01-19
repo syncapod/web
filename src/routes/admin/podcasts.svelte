@@ -47,7 +47,7 @@
 				console.log(err);
 			}
 			searchResults = r.response.podcasts;
-		}, 750);
+		}, 500);
 	};
 </script>
 

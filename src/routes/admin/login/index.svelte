@@ -6,8 +6,11 @@
 	let username = '';
 	let password = '';
 	let failed = false;
+	let invalidSession = false;
 
 	const login = async (e: Event) => {
+		invalidSession = false;
+
 		const response = await authClient.authenticate({
 			username: username,
 			password: password,
@@ -22,6 +25,11 @@
 		goto('/admin');
 	};
 
+	if ($sessionKeyStore) {
+		$sessionKeyStore = '';
+		invalidSession = true;
+	}
+
 	// reset failed status
 	$: if (username || password) failed = false;
 </script>
@@ -32,6 +40,9 @@
 	<h1 class="text-center text-4xl font-thin mb-4">Syncapod Admin Login</h1>
 
 	<form on:submit|preventDefault={login} class="p-4 flex flex-col space-y-4">
+		{#if invalidSession}
+			<p class="text-red-800">Expired or invalid session. Please login again.</p>
+		{/if}
 		{#if failed}
 			<p class="text-red-800">Failed to login!</p>
 		{/if}

@@ -1,4 +1,6 @@
 <script context="module" lang="ts">
+	import type { AuthorizeReq, AuthorizeRes } from '$lib/gen/auth';
+	import type { FinishedUnaryCall, RpcError } from '@protobuf-ts/runtime-rpc';
 	import { browser } from '$app/env';
 	import { SESSIONKEY_KEY } from '$lib/const';
 	import { authClient } from '$lib/twirp';
@@ -12,7 +14,18 @@
 		}
 
 		if (sessionKey) {
-			const response = await authClient.authorize({ sessionKey });
+			let response: FinishedUnaryCall<AuthorizeReq, AuthorizeRes>;
+			try {
+				response = await authClient.authorize({ sessionKey: sessionKey, admin: true });
+			} catch (e) {
+				const err = e as RpcError;
+				console.log(err.code);
+				return {
+					status: 302,
+					redirect: '/admin/login'
+				};
+			}
+
 			if (response.response) {
 				return {
 					props: {
