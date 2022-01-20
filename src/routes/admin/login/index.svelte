@@ -1,3 +1,7 @@
+<script context="module" lang="ts">
+
+</script>
+
 <script lang="ts">
 	import { authClient } from '$lib/twirp';
 	import { sessionKeyStore } from '$lib/store';
@@ -14,8 +18,9 @@
 		const response = await authClient.authenticate({
 			username: username,
 			password: password,
+			userAgent: navigator.userAgent,
 			stayLoggedIn: true,
-			userAgent: navigator.userAgent
+			admin: true
 		});
 		if (response.response.sessionKey == '') {
 			failed = true;

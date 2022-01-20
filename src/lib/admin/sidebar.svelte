@@ -3,14 +3,16 @@
 	import { page } from '$app/stores';
 	import { sessionKeyStore } from '$lib/store';
 	import { goto } from '$app/navigation';
+	import { authClient } from '$lib/twirp';
 
 	const isBold = (pathname: string, endpoint: string): string => {
 		return pathname.includes(endpoint) ? 'font-semibold' : '';
 	};
 
-	const logout = () => {
+	const logout = async () => {
+		await authClient.logout({ sessionKey: $sessionKeyStore });
 		$sessionKeyStore = '';
-		goto('/admin');
+		goto('/admin/login');
 	};
 
 	const dispatch = createEventDispatcher();
