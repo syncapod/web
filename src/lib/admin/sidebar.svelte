@@ -1,16 +1,15 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import { page } from '$app/stores';
-	import { sessionKeyStore } from '$lib/store';
+	import { adminAuthClient, sessionKeyStore } from '$lib/store';
 	import { goto } from '$app/navigation';
-	import { authClient } from '$lib/twirp';
 
 	const isBold = (pathname: string, endpoint: string): string => {
 		return pathname.includes(endpoint) ? 'font-semibold' : '';
 	};
 
 	const logout = async () => {
-		await authClient.logout({ sessionKey: $sessionKeyStore });
+		await $adminAuthClient.logout({ sessionKey: $sessionKeyStore });
 		$sessionKeyStore = '';
 		goto('/admin/login');
 	};

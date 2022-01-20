@@ -74,18 +74,18 @@ class AddPodReq$Type extends MessageType<AddPodReq> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: AddPodReq): AddPodReq {
-        let message = target ?? this.create(), end = reader.pos + length;
+        const message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
+            const [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
                 case /* string url */ 1:
                     message.url = reader.string();
                     break;
                 default:
-                    let u = options.readUnknownField;
+                    const u = options.readUnknownField;
                     if (u === "throw")
                         throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
+                    const d = reader.skip(wireType);
                     if (u !== false)
                         (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
             }
@@ -96,7 +96,7 @@ class AddPodReq$Type extends MessageType<AddPodReq> {
         /* string url = 1; */
         if (message.url !== "")
             writer.tag(1, WireType.LengthDelimited).string(message.url);
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -121,18 +121,18 @@ class AddPodRes$Type extends MessageType<AddPodRes> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: AddPodRes): AddPodRes {
-        let message = target ?? this.create(), end = reader.pos + length;
+        const message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
+            const [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
                 case /* protos.Podcast podcast */ 1:
                     message.podcast = Podcast.internalBinaryRead(reader, reader.uint32(), options, message.podcast);
                     break;
                 default:
-                    let u = options.readUnknownField;
+                    const u = options.readUnknownField;
                     if (u === "throw")
                         throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
+                    const d = reader.skip(wireType);
                     if (u !== false)
                         (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
             }
@@ -143,7 +143,7 @@ class AddPodRes$Type extends MessageType<AddPodRes> {
         /* protos.Podcast podcast = 1; */
         if (message.podcast)
             Podcast.internalBinaryWrite(message.podcast, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -169,7 +169,7 @@ class RefPodReq$Type extends MessageType<RefPodReq> {
         return target ?? this.create();
     }
     internalBinaryWrite(message: RefPodReq, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -195,7 +195,7 @@ class RefPodRes$Type extends MessageType<RefPodRes> {
         return target ?? this.create();
     }
     internalBinaryWrite(message: RefPodRes, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -220,18 +220,18 @@ class SearchPodReq$Type extends MessageType<SearchPodReq> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: SearchPodReq): SearchPodReq {
-        let message = target ?? this.create(), end = reader.pos + length;
+        const message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
+            const [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
                 case /* string text */ 1:
                     message.text = reader.string();
                     break;
                 default:
-                    let u = options.readUnknownField;
+                    const u = options.readUnknownField;
                     if (u === "throw")
                         throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
+                    const d = reader.skip(wireType);
                     if (u !== false)
                         (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
             }
@@ -242,7 +242,7 @@ class SearchPodReq$Type extends MessageType<SearchPodReq> {
         /* string text = 1; */
         if (message.text !== "")
             writer.tag(1, WireType.LengthDelimited).string(message.text);
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -267,18 +267,18 @@ class SearchPodRes$Type extends MessageType<SearchPodRes> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: SearchPodRes): SearchPodRes {
-        let message = target ?? this.create(), end = reader.pos + length;
+        const message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
+            const [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
                 case /* repeated protos.Podcast podcasts */ 1:
                     message.podcasts.push(Podcast.internalBinaryRead(reader, reader.uint32(), options));
                     break;
                 default:
-                    let u = options.readUnknownField;
+                    const u = options.readUnknownField;
                     if (u === "throw")
                         throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
+                    const d = reader.skip(wireType);
                     if (u !== false)
                         (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
             }
@@ -289,7 +289,7 @@ class SearchPodRes$Type extends MessageType<SearchPodRes> {
         /* repeated protos.Podcast podcasts = 1; */
         for (let i = 0; i < message.podcasts.length; i++)
             Podcast.internalBinaryWrite(message.podcasts[i], writer.tag(1, WireType.LengthDelimited).fork(), options).join();
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;

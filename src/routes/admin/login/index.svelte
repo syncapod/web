@@ -1,10 +1,8 @@
 <script context="module" lang="ts">
-
 </script>
 
 <script lang="ts">
-	import { authClient } from '$lib/twirp';
-	import { sessionKeyStore } from '$lib/store';
+	import { adminAuthClient, sessionKeyStore } from '$lib/store';
 	import { goto } from '$app/navigation';
 
 	let username = '';
@@ -15,7 +13,7 @@
 	const login = async (e: Event) => {
 		invalidSession = false;
 
-		const response = await authClient.authenticate({
+		const response = await $adminAuthClient.authenticate({
 			username: username,
 			password: password,
 			userAgent: navigator.userAgent,

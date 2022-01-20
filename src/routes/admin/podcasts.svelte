@@ -4,9 +4,8 @@
 	import type { FinishedUnaryCall, RpcError } from '@protobuf-ts/runtime-rpc';
 	import type { Podcast } from '$lib/gen/podcast';
 
-	import { adminClient } from '$lib/twirp';
-	import { sessionKeyStore } from '$lib/store';
 	import Button from '$lib/admin/button.svelte';
+	import { sessionKeyStore, adminClient } from '$lib/store';
 
 	// AddPodcast
 	let errorMsg = '';
@@ -21,7 +20,10 @@
 	const addPodcast = async () => {
 		let r: FinishedUnaryCall<AddPodReq, AddPodRes>;
 		try {
-			r = await adminClient.addPodcast({ url: rssURL }, { meta: { Auth_Token: $sessionKeyStore } });
+			r = await $adminClient.addPodcast(
+				{ url: rssURL },
+				{ meta: { Auth_Token: $sessionKeyStore } }
+			);
 		} catch (e) {
 			const rpcError = e as RpcError;
 			errorMsg = rpcError.message;
@@ -38,7 +40,7 @@
 		debounceTimer = setTimeout(async () => {
 			let r: FinishedUnaryCall<SearchPodReq, SearchPodRes>;
 			try {
-				r = await adminClient.searchPodcasts(
+				r = await $adminClient.searchPodcasts(
 					{ text: searchTerm },
 					{ meta: { Auth_Token: $sessionKeyStore } }
 				);

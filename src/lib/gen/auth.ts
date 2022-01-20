@@ -180,9 +180,9 @@ class AuthenticateReq$Type extends MessageType<AuthenticateReq> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: AuthenticateReq): AuthenticateReq {
-        let message = target ?? this.create(), end = reader.pos + length;
+        const message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
+            const [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
                 case /* string username */ 1:
                     message.username = reader.string();
@@ -200,10 +200,10 @@ class AuthenticateReq$Type extends MessageType<AuthenticateReq> {
                     message.admin = reader.bool();
                     break;
                 default:
-                    let u = options.readUnknownField;
+                    const u = options.readUnknownField;
                     if (u === "throw")
                         throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
+                    const d = reader.skip(wireType);
                     if (u !== false)
                         (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
             }
@@ -226,7 +226,7 @@ class AuthenticateReq$Type extends MessageType<AuthenticateReq> {
         /* bool admin = 5; */
         if (message.admin !== false)
             writer.tag(5, WireType.Varint).bool(message.admin);
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -252,9 +252,9 @@ class AuthenticateRes$Type extends MessageType<AuthenticateRes> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: AuthenticateRes): AuthenticateRes {
-        let message = target ?? this.create(), end = reader.pos + length;
+        const message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
+            const [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
                 case /* string sessionKey */ 1:
                     message.sessionKey = reader.string();
@@ -263,10 +263,10 @@ class AuthenticateRes$Type extends MessageType<AuthenticateRes> {
                     message.user = User.internalBinaryRead(reader, reader.uint32(), options, message.user);
                     break;
                 default:
-                    let u = options.readUnknownField;
+                    const u = options.readUnknownField;
                     if (u === "throw")
                         throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
+                    const d = reader.skip(wireType);
                     if (u !== false)
                         (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
             }
@@ -280,7 +280,7 @@ class AuthenticateRes$Type extends MessageType<AuthenticateRes> {
         /* protos.User user = 2; */
         if (message.user)
             User.internalBinaryWrite(message.user, writer.tag(2, WireType.LengthDelimited).fork(), options).join();
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -306,9 +306,9 @@ class AuthorizeReq$Type extends MessageType<AuthorizeReq> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: AuthorizeReq): AuthorizeReq {
-        let message = target ?? this.create(), end = reader.pos + length;
+        const message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
+            const [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
                 case /* string sessionKey */ 1:
                     message.sessionKey = reader.string();
@@ -317,10 +317,10 @@ class AuthorizeReq$Type extends MessageType<AuthorizeReq> {
                     message.admin = reader.bool();
                     break;
                 default:
-                    let u = options.readUnknownField;
+                    const u = options.readUnknownField;
                     if (u === "throw")
                         throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
+                    const d = reader.skip(wireType);
                     if (u !== false)
                         (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
             }
@@ -334,7 +334,7 @@ class AuthorizeReq$Type extends MessageType<AuthorizeReq> {
         /* bool admin = 2; */
         if (message.admin !== false)
             writer.tag(2, WireType.Varint).bool(message.admin);
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -359,18 +359,18 @@ class AuthorizeRes$Type extends MessageType<AuthorizeRes> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: AuthorizeRes): AuthorizeRes {
-        let message = target ?? this.create(), end = reader.pos + length;
+        const message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
+            const [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
                 case /* protos.User user */ 1:
                     message.user = User.internalBinaryRead(reader, reader.uint32(), options, message.user);
                     break;
                 default:
-                    let u = options.readUnknownField;
+                    const u = options.readUnknownField;
                     if (u === "throw")
                         throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
+                    const d = reader.skip(wireType);
                     if (u !== false)
                         (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
             }
@@ -381,7 +381,7 @@ class AuthorizeRes$Type extends MessageType<AuthorizeRes> {
         /* protos.User user = 1; */
         if (message.user)
             User.internalBinaryWrite(message.user, writer.tag(1, WireType.LengthDelimited).fork(), options).join();
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -406,18 +406,18 @@ class LogoutReq$Type extends MessageType<LogoutReq> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: LogoutReq): LogoutReq {
-        let message = target ?? this.create(), end = reader.pos + length;
+        const message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
+            const [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
                 case /* string sessionKey */ 1:
                     message.sessionKey = reader.string();
                     break;
                 default:
-                    let u = options.readUnknownField;
+                    const u = options.readUnknownField;
                     if (u === "throw")
                         throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
+                    const d = reader.skip(wireType);
                     if (u !== false)
                         (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
             }
@@ -428,7 +428,7 @@ class LogoutReq$Type extends MessageType<LogoutReq> {
         /* string sessionKey = 1; */
         if (message.sessionKey !== "")
             writer.tag(1, WireType.LengthDelimited).string(message.sessionKey);
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -453,18 +453,18 @@ class LogoutRes$Type extends MessageType<LogoutRes> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: LogoutRes): LogoutRes {
-        let message = target ?? this.create(), end = reader.pos + length;
+        const message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
+            const [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
                 case /* bool success */ 1:
                     message.success = reader.bool();
                     break;
                 default:
-                    let u = options.readUnknownField;
+                    const u = options.readUnknownField;
                     if (u === "throw")
                         throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
+                    const d = reader.skip(wireType);
                     if (u !== false)
                         (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
             }
@@ -475,7 +475,7 @@ class LogoutRes$Type extends MessageType<LogoutRes> {
         /* bool success = 1; */
         if (message.success !== false)
             writer.tag(1, WireType.Varint).bool(message.success);
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -504,9 +504,9 @@ class CreateAccountReq$Type extends MessageType<CreateAccountReq> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: CreateAccountReq): CreateAccountReq {
-        let message = target ?? this.create(), end = reader.pos + length;
+        const message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
+            const [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
                 case /* string username */ 1:
                     message.username = reader.string();
@@ -524,10 +524,10 @@ class CreateAccountReq$Type extends MessageType<CreateAccountReq> {
                     message.acceptTerms = reader.bool();
                     break;
                 default:
-                    let u = options.readUnknownField;
+                    const u = options.readUnknownField;
                     if (u === "throw")
                         throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
+                    const d = reader.skip(wireType);
                     if (u !== false)
                         (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
             }
@@ -550,7 +550,7 @@ class CreateAccountReq$Type extends MessageType<CreateAccountReq> {
         /* bool acceptTerms = 5; */
         if (message.acceptTerms !== false)
             writer.tag(5, WireType.Varint).bool(message.acceptTerms);
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -575,18 +575,18 @@ class CreateAccountRes$Type extends MessageType<CreateAccountRes> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: CreateAccountRes): CreateAccountRes {
-        let message = target ?? this.create(), end = reader.pos + length;
+        const message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
+            const [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
                 case /* string error */ 1:
                     message.error = reader.string();
                     break;
                 default:
-                    let u = options.readUnknownField;
+                    const u = options.readUnknownField;
                     if (u === "throw")
                         throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
+                    const d = reader.skip(wireType);
                     if (u !== false)
                         (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
             }
@@ -597,7 +597,7 @@ class CreateAccountRes$Type extends MessageType<CreateAccountRes> {
         /* string error = 1; */
         if (message.error !== "")
             writer.tag(1, WireType.LengthDelimited).string(message.error);
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -622,18 +622,18 @@ class ResetPasswordReq$Type extends MessageType<ResetPasswordReq> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ResetPasswordReq): ResetPasswordReq {
-        let message = target ?? this.create(), end = reader.pos + length;
+        const message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
+            const [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
                 case /* string email */ 1:
                     message.email = reader.string();
                     break;
                 default:
-                    let u = options.readUnknownField;
+                    const u = options.readUnknownField;
                     if (u === "throw")
                         throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
+                    const d = reader.skip(wireType);
                     if (u !== false)
                         (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
             }
@@ -644,7 +644,7 @@ class ResetPasswordReq$Type extends MessageType<ResetPasswordReq> {
         /* string email = 1; */
         if (message.email !== "")
             writer.tag(1, WireType.LengthDelimited).string(message.email);
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -669,18 +669,18 @@ class ResetPasswordRes$Type extends MessageType<ResetPasswordRes> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ResetPasswordRes): ResetPasswordRes {
-        let message = target ?? this.create(), end = reader.pos + length;
+        const message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
+            const [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
                 case /* string error */ 1:
                     message.error = reader.string();
                     break;
                 default:
-                    let u = options.readUnknownField;
+                    const u = options.readUnknownField;
                     if (u === "throw")
                         throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
+                    const d = reader.skip(wireType);
                     if (u !== false)
                         (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
             }
@@ -691,7 +691,7 @@ class ResetPasswordRes$Type extends MessageType<ResetPasswordRes> {
         /* string error = 1; */
         if (message.error !== "")
             writer.tag(1, WireType.LengthDelimited).string(message.error);
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -716,18 +716,18 @@ class ActivateReq$Type extends MessageType<ActivateReq> {
         return message;
     }
     internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: ActivateReq): ActivateReq {
-        let message = target ?? this.create(), end = reader.pos + length;
+        const message = target ?? this.create(), end = reader.pos + length;
         while (reader.pos < end) {
-            let [fieldNo, wireType] = reader.tag();
+            const [fieldNo, wireType] = reader.tag();
             switch (fieldNo) {
                 case /* string token */ 1:
                     message.token = reader.string();
                     break;
                 default:
-                    let u = options.readUnknownField;
+                    const u = options.readUnknownField;
                     if (u === "throw")
                         throw new globalThis.Error(`Unknown field ${fieldNo} (wire type ${wireType}) for ${this.typeName}`);
-                    let d = reader.skip(wireType);
+                    const d = reader.skip(wireType);
                     if (u !== false)
                         (u === true ? UnknownFieldHandler.onRead : u)(this.typeName, message, fieldNo, wireType, d);
             }
@@ -738,7 +738,7 @@ class ActivateReq$Type extends MessageType<ActivateReq> {
         /* string token = 1; */
         if (message.token !== "")
             writer.tag(1, WireType.LengthDelimited).string(message.token);
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
@@ -764,7 +764,7 @@ class ActivateRes$Type extends MessageType<ActivateRes> {
         return target ?? this.create();
     }
     internalBinaryWrite(message: ActivateRes, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
-        let u = options.writeUnknownFields;
+        const u = options.writeUnknownFields;
         if (u !== false)
             (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
         return writer;
